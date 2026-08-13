@@ -15,8 +15,23 @@
 </head>
 
 <body>
-    <h1 id="huh"></h1>
-    <div id="main-container"></div>
+    <h1 id="main-title">Agenda</h1>
+    <div class="container">
+        <div class="row justify-content-center">
+
+            <div id="main-container" class="col-md-8">
+
+                <div id="main-ctn-header" >
+                    <h3>Minha agenda</h3>
+                    <button id= "evento-btn" class="btn btn-primary">Criar evento</button>
+                </div>
+
+                <hr id="start-hr" style="height: 2px; background-color: black; border: none;">
+
+            </div>
+
+        </div>
+    </div>
 
     <script src="{% static 'js/script.js' %}"></script>
 </body>

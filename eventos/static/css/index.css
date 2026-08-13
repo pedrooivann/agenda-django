@@ -1,11 +1,40 @@
 body {
-    background-color: rgb(226, 226, 226);
+    background-color: rgb(255, 255, 255) !important;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
+
 #main-container {
-    width: 200px;
-    height: 300px;
+    border: 1px solid red;
+    height: 600px;
+}
+
+#main-ctn-header {
+    padding: 15px 0 15px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#main-ctn-header h3 {
+    opacity: 50%;
+}
+
+#main-title {
+    font-size: 3rem;
+    margin: 8% 0px 30px;
+}
+
+#evento-btn {
+    border: none;
+    font-size: 1.5rem;
+    transition: 1s;
+}
+
+#evento-btn:hover {
+    background-color: rgb(13, 157, 253) ;
+    box-shadow: 0 0 10px rgb(13, 157, 253);
 }
