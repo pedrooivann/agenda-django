@@ -4,7 +4,6 @@ class Evento (models.Model):
     titulo = models.TextField(max_length=100)
     descricao = models.TextField()
     data_evento = models.DateField()
-    horario_inicio = models.TimeField()
     horario = models.TimeField()
     
     def __str__ (self):
