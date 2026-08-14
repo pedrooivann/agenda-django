@@ -3,9 +3,8 @@ from .models import Evento
 
 
 def mostrar_home(request):
-
+    
     if request.method == "POST":
-
         titulo = request.POST["titulo"]
         descricao = request.POST["descricao"]
         data_evento = request.POST["data_evento"]
@@ -28,18 +27,14 @@ def mostrar_home(request):
 
 
 def editar_evento(request, id):
-
     evento = Evento.objects.get(id=id)
 
     if request.method == "POST":
-
         evento.titulo = request.POST["titulo"]
         evento.descricao = request.POST["descricao"]
         evento.data_evento = request.POST["data_evento"]
         evento.horario = request.POST["horario"]
-
         evento.save()
-
         return redirect("home")
 
     return redirect("home")
@@ -48,9 +43,6 @@ def editar_evento(request, id):
 def excluir_evento(request, id):
 
     if request.method == "POST":
-
         evento = Evento.objects.get(id=id)
-
         evento.delete()
-
     return redirect("home")
