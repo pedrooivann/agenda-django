@@ -7,8 +7,9 @@ body {
 }
 
 #main-container {
-    border: 1px solid red;
     height: 600px;
+    display: flex;
+    flex-direction: column;
 }
 
 #main-ctn-header {
@@ -55,4 +56,9 @@ body {
     display: flex;
     justify-content: flex-end;
     gap: 5px;
+}
+
+#events-container {
+    flex: 1;
+    overflow-y: auto;
 }
