@@ -44,16 +44,47 @@
                         </div>
 
                         <div>
-                            {{ evento.data_evento }} - {{ evento.horario }}
+                            {{ evento.data_evento|date:"d/m/Y" }}
+                            -
+                            {{ evento.horario|time:"H:i" }}
                         </div>
 
                         <div>
-                            {{ evento.descricao|truncatechars:50 }}
+                            {{ evento.descricao|truncatechars:40 }}
+                        </div>
+
+                        <div class="evento-acoes">
+
+                            <!-- VER -->
+                            <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal"
+                                data-bs-target="#modalVer{{ evento.id }}">
+                                Ver
+                            </button>
+
+
+                            <!-- EDITAR -->
+                            <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#modalEditar{{ evento.id }}">
+                                Editar
+                            </button>
+
+
+                            <!-- EXCLUIR -->
+                            <form method="POST" action="{% url 'excluir_evento' evento.id %}" style="display: inline;">
+
+                                {% csrf_token %}
+
+                                <button type="submit" class="btn btn-sm btn-danger">
+                                    Excluir
+                                </button>
+
+                            </form>
+
                         </div>
 
                     </div>
-                    <div class="modal fade" id="modalDetalhes{{ evento.id }}" tabindex="-1">
 
+                    <div class="modal fade" id="modalVer{{ evento.id }}" tabindex="-1">
                         <div class="modal-dialog">
 
                             <div class="modal-content">
@@ -64,8 +95,7 @@
                                         {{ evento.titulo }}
                                     </h5>
 
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal">
-                                    </button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 
                                 </div>
 
@@ -74,19 +104,17 @@
 
                                     <p>
                                         <strong>Data:</strong>
-                                        {{ evento.data_evento }}
+                                        {{ evento.data_evento|date:"d/m/Y" }}
                                     </p>
 
                                     <p>
                                         <strong>Horário:</strong>
-                                        {{ evento.horario }}
+                                        {{ evento.horario|time:"H:i" }}
                                     </p>
 
                                     <hr>
 
-                                    <p>
-                                        <strong>Descrição:</strong>
-                                    </p>
+                                    <strong>Descrição:</strong>
 
                                     <p>
                                         {{ evento.descricao }}
@@ -106,8 +134,133 @@
                             </div>
 
                         </div>
-
                     </div>
+
+                    <div class="modal fade" id="modalVer{{ evento.id }}" tabindex="-1">
+                        <div class="modal-dialog">
+
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+
+                                    <h5 class="modal-title">
+                                        {{ evento.titulo }}
+                                    </h5>
+
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+
+                                </div>
+
+
+                                <div class="modal-body">
+
+                                    <p>
+                                        <strong>Data:</strong>
+                                        {{ evento.data_evento|date:"d/m/Y" }}
+                                    </p>
+
+                                    <p>
+                                        <strong>Horário:</strong>
+                                        {{ evento.horario|time:"H:i" }}
+                                    </p>
+
+                                    <hr>
+
+                                    <strong>Descrição:</strong>
+
+                                    <p>
+                                        {{ evento.descricao }}
+                                    </p>
+
+                                </div>
+
+
+                                <div class="modal-footer">
+
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                        Fechar
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="modalEditar{{ evento.id }}" tabindex="-1">
+                        <div class="modal-dialog">
+
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+
+                                    <h5 class="modal-title">
+                                        Editar evento
+                                    </h5>
+
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+
+                                </div>
+
+
+                                <form method="POST" action="{% url 'editar_evento' evento.id %}">
+
+                                    {% csrf_token %}
+
+                                    <div class="modal-body">
+
+                                        <label>Título</label>
+
+                                        <input type="text" name="titulo" class="form-control"
+                                            value="{{ evento.titulo }}" required>
+
+
+                                        <label class="mt-3">
+                                            Descrição
+                                        </label>
+
+                                        <textarea name="descricao" class="form-control"
+                                            required>{{ evento.descricao }}</textarea>
+
+
+                                        <label class="mt-3">
+                                            Data
+                                        </label>
+
+                                        <input type="date" name="data_evento" class="form-control"
+                                            value="{{ evento.data_evento|date:'Y-m-d' }}" required>
+
+
+                                        <label class="mt-3">
+                                            Horário
+                                        </label>
+
+                                        <input type="time" name="horario" class="form-control"
+                                            value="{{ evento.horario|time:'H:i' }}" required>
+
+                                    </div>
+
+
+                                    <div class="modal-footer">
+
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                            Cancelar
+                                        </button>
+
+                                        <button type="submit" class="btn btn-primary">
+                                            Salvar alterações
+                                        </button>
+
+                                    </div>
+
+                                </form>
+
+                            </div>
+
+                        </div>
+                    </div>
+
                     {% endfor %}
 
                 </div>
