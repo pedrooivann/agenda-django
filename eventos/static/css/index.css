@@ -38,3 +38,11 @@ body {
     background-color: rgb(13, 157, 253) ;
     box-shadow: 0 0 10px rgb(13, 157, 253);
 }
+
+.evento {
+    background-color: white;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.300);
+    padding: 20px;
+    margin-top: 15px;
+    
+}

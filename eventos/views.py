@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Evento
 
 def mostrar_home(request):
@@ -18,8 +18,12 @@ def mostrar_home(request):
             horario=horario
         )
 
+        return redirect("home")
+
+
     eventos = Evento.objects.all()
 
     return render(request, "index.html", {
         "eventos": eventos
     })
+
