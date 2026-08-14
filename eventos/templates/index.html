@@ -20,12 +20,9 @@
 
     <div class="container">
         <div class="row justify-content-center">
-
             <div id="main-container" class="col-md-8">
-
                 <div id="main-ctn-header">
                     <h3>Minha agenda</h3>
-
                     <button id="evento-btn" class="btn btn-primary" data-bs-toggle="modal"
                         data-bs-target="#modalEvento">
                         Criar evento
@@ -41,34 +38,29 @@
                         <div>
                             <strong>{{ evento.titulo }}</strong>
                         </div>
-
+                        
                         <div>
                             {{ evento.data_evento|date:"d/m/Y" }}
                             -
                             {{ evento.horario|time:"H:i" }}
                         </div>
-
+                        
                         <div>
                             {{ evento.descricao|truncatechars:40 }}
                         </div>
-
+                        
                         <div class="evento-acoes">
 
-                            <!-- VER -->
                             <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal"
                                 data-bs-target="#modalVer{{ evento.id }}">
                                 Ver
                             </button>
 
-
-                            <!-- EDITAR -->
                             <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
                                 data-bs-target="#modalEditar{{ evento.id }}">
                                 Editar
                             </button>
 
-
-                            <!-- EXCLUIR -->
                             <form method="POST" action="{% url 'excluir_evento' evento.id %}" style="display: inline;">
 
                                 {% csrf_token %}
